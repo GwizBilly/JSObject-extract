@@ -1,0 +1,5 @@
+The length of big list is 5412
+The length of little list is 234
+10100001
+14100186
+Lengthg of outout is 234

@@ -1,0 +1,23 @@
+{
+  "name": "lfs-products",
+  "version": "1.0.0",
+  "description": "extract from a big list, according to a small list of IDs",
+  "main": "boom.js",
+  "scripts": {
+    "test": "node boom.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GwizBilly/JSObject-extract.git"
+  },
+  "keywords": [
+    "json",
+    "statcan"
+  ],
+  "author": "Guillaume Savoie",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/GwizBilly/JSObject-extract/issues"
+  },
+  "homepage": "https://github.com/GwizBilly/JSObject-extract#readme"
+}
