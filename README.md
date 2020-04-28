@@ -2,9 +2,9 @@
 We'd like to extract info from a big list, according to a smaller list of ID numbers.
 So we'll get most of the information we need for the small list, just by doing a big GET request followed by subsetting with a NodeJs program (boom.js).
 
-Big list is the result of a GET request for "getAllCubesList" and the small list consists of a subset of Labour Force Survey standard tables.
+Big list is the result of a GET request for "getAllCubesList" and the small list consists of a subset of Labour Force Survey standard tables (CANSIM id, productId, freq, archivedStatus).
 
-We would like the titles for each productId, in both languages, along with a few other metadata (see input-files/list.js).
+We would like the titles for each productId, in both languages, along with a few other metadata.
 
 This first part is done with boom.js and list.js.
 
