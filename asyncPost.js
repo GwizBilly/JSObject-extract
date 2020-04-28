@@ -18,21 +18,23 @@ const https = require('https'),
 let accString = "",
 outputHeaders = h.join(",");
 // let p = '14100017', // []
-let data = [],
- options = {};
-
+let requestData = [],
+ options = [];
+// prepare 48 POST requests using pList as an input for product IDs 
 for (let i = 0; i < listLen; i++) {
-	data[i] = '[{\"productId\":' + pList[i][1] + '}]',
-	options = {
+	// pList is a 2-dimensional array: 4x48; CANSIM, productId, freq, arch
+	requestData[i] = '[{\"productId\":' + pList[i][1] + '}]';
+	options[i] = {
 		hostname: 'www150.statcan.gc.ca',
 		port: 443,
 		path: url,
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
-			'Content-Length': data[i].length
+			'Content-Length': requestData[i].length
 		}
-	};
+	}
+}
 (async function () {
 	console.clear();
 	await makeRequest();
