@@ -1,3 +1,4 @@
+// | CANSIM | productId | frequency | archivedStatus |
 const list = [
 	["2820001","1410001701","M","0"], 
 	["2820002","1410001801","A","Archived"], 
