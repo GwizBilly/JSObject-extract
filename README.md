@@ -1,4 +1,4 @@
-# JSObject-extract
+# JSON subsetting
 extract from big list according to small list of ID numbers
 to get most of the information we need for the small list.
 
@@ -10,10 +10,16 @@ This first part is done with Boom.js.
 
 Developper resources for GET request: https://www.statcan.gc.ca/eng/developers/wds/user-guide#a11-4
 
-# This project also includes a restful client that fetches geography
+# Restful client that fetches geography
 
 The geo needs to be extarcted from a "cubeMetadata" POST request.
 
 This second part is done with asyncPost.js.
 
 Developper resources for POST request: https://www.statcan.gc.ca/eng/developers/wds/user-guide#a11-1
+
+# NodeJs environment and Statcan Web Data Service
+
+Once you've cloned this repo, you should run ' npm install ' to fetch the dependencies.
+
+Here's a link to the main developper resource: https://www.statcan.gc.ca/eng/developers/wds
