@@ -12,7 +12,7 @@ Developper resources for GET request: https://www.statcan.gc.ca/eng/developers/w
 
 # Restful client that fetches geography
 
-The geo needs to be extarcted from a "cubeMetadata" POST request. One request per productId, followed by subsetting, and outputing to .csv format.
+The geo needs to be extracted from a "cubeMetadata" POST request. One request per productId, followed by subsetting, and outputing to .csv format.
 
 This second part is done with asyncPost.js and list.js.
 
