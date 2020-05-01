@@ -1,6 +1,7 @@
 "use strict";
 const https = require('https'),
-			pList = require('./input-files/list.js'),
+			pList = require('./input_files/list.js'),
+		listLen = pList.length,
 				url = '/t1/wds/rest/getCubeMetadata',
 				  h = [
 						"productId",
@@ -10,8 +11,7 @@ const https = require('https'),
 						"frenquencyCode",
 						"archiveStatusEn",
 						"archiveStatusFr",
-						"nbDatapointsCube",
-						"\n",
+						"nbDatapointsCube"
 					];
 // to start... get the dimension[] length
 
@@ -19,41 +19,44 @@ let accString = "",
 outputHeaders = h.join(",");
 // let p = '14100017', // []
 let requestData = [],
- options = [];
+				options = [];
 // prepare 48 POST requests using pList as an input for product IDs 
-for (let i = 0; i < listLen; i++) {
-	// pList is a 2-dimensional array: 4x48; CANSIM, productId, freq, arch
-	requestData[i] = '[{\"productId\":' + pList[i][1] + '}]';
-	options[i] = {
-		hostname: 'www150.statcan.gc.ca',
-		port: 443,
-		path: url,
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json',
-			'Content-Length': requestData[i].length
-		}
-	}
-}
+// test with only 3 POST reqiests...
+//for (let i = 0; i < listLen; i++) {
 (async function () {
 	console.clear();
-	await makeRequest();
-	console.log("finished!");
+	for (let i = 0; i < listLen; i++) {
+		// pList is a 2-dimensional array: 4x48; CANSIM, productId, freq, arch
+		requestData[i] = '[{\"productId\":' + pList[i][1].substring(0,8) + '}]';
+		options[i] = {
+			hostname: 'www150.statcan.gc.ca',
+			port: 443,
+			path: url,
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				'Content-Length': requestData[i].length
+			}
+		}
+		await makeRequest(i);
+		// if (i < listLen) {console.log(",");}
+	}
+	//console.log("finished!");
 })();
-async function makeRequest() {
+async function makeRequest(i) {
 	try {
-		let http_promise = getPromise();
+		let http_promise = getPromise(i);
 		let response_body = await http_promise;
 		// here goes some extra processing if we want
-		// console.log(response_body);
-		accString += respose_body;
+		console.log(response_body);
+		//accString += respose_body;
 	} catch(error) {
 		console.log(error);
 	}
 }
-function getPromise() {
+function getPromise(i) {
 	return new Promise((resolve, reject) => {
-		let req = https.request(options, (res) => {
+		let req = https.request(options[i], (res) => {
 			let chunks_of_data = [];
 			res.on('data', (fragments) => {
 				chunks_of_data.push(fragments);
@@ -69,7 +72,7 @@ function getPromise() {
 		req.on('error', (error) => {
 			console.log(error);
 		});
-		req.write(data);
+		req.write(requestData[i]);
 		req.end();
 	});
 }
