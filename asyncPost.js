@@ -2,27 +2,37 @@
 const https = require('https'),
 			pList = require('./input_files/list.js'),
 		listLen = pList.length,
-				url = '/t1/wds/rest/getCubeMetadata',
-				  h = [
-						"productId",
-						"cansimId",
-						"cubeTitleEn",
-						"cubeTitleFr",
-						"frenquencyCode",
-						"archiveStatusEn",
-						"archiveStatusFr",
-						"nbDatapointsCube"
-					];
-// to start... get the dimension[] length
-
-let accString = "",
-outputHeaders = h.join(",");
+				url = "/t1/wds/rest/getCubeMetadata",
+				 id = "productId",
+		 CANSIM = "cansimId",
+		     en =	"cubeTitleEn",
+				 fr =	"cubeTitleFr",
+			 freq	=	"frenquencyCode",
+			 arch = "archiveStatusCode",
+		 archEn	= "archiveStatusEn",
+		 archFr	=	"archiveStatusFr",
+		 nDataP	=	"nbDatapointsCube",
+		    dim = "dimension",
+				mem = "member",
+				gEn = "memberNameEn",
+				gFr = "memberNameFr";
+let accString = JSON.stringify({
+	productId: id,
+	cansim: CANSIM,
+	english: en,
+	french: fr,
+	frequencyCode: freq,
+	archivedStatus: arch,
+	archivedEnglish: archEn,
+	archivedFrench: archFr,
+	numberOfDatapoints: nDataP,
+	geoEn: dim +"."+ mem +"."+ gEn,
+	geoFr: dim +"."+ mem +"."+ gFr
+});
 // let p = '14100017', // []
 let requestData = [],
 				options = [];
 // prepare 48 POST requests using pList as an input for product IDs 
-// test with only 3 POST reqiests...
-//for (let i = 0; i < listLen; i++) {
 (async function () {
 	console.clear();
 	for (let i = 0; i < listLen; i++) {
@@ -39,17 +49,17 @@ let requestData = [],
 			}
 		}
 		await makeRequest(i);
-		// if (i < listLen) {console.log(",");}
 	}
 	//console.log("finished!");
+	console.log(accString);
 })();
 async function makeRequest(i) {
 	try {
 		let http_promise = getPromise(i);
 		let response_body = await http_promise;
 		// here goes some extra processing if we want
-		console.log(response_body);
-		//accString += respose_body;
+		let stringOut = JSON.stringify(JSON.parse(response_body)[0]);
+		accString = accString + "," + stringOut;
 	} catch(error) {
 		console.log(error);
 	}
