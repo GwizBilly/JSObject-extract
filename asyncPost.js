@@ -17,17 +17,17 @@ const https = require('https'),
 				gEn = "memberNameEn",
 				gFr = "memberNameFr";
 let accString = JSON.stringify({
-	productId: id,
-	cansim: CANSIM,
-	english: en,
-	french: fr,
-	frequencyCode: freq,
-	archivedStatus: arch,
-	archivedEnglish: archEn,
-	archivedFrench: archFr,
-	numberOfDatapoints: nDataP,
-	geoEn: dim +"."+ mem +"."+ gEn,
-	geoFr: dim +"."+ mem +"."+ gFr
+	0: id,
+	1: CANSIM,
+	2: en,
+	3: fr,
+	4: freq,
+	5: arch,
+	6: archEn,
+	7: archFr,
+	8: nDataP,
+	9: dim +"."+ mem +"."+ gEn,
+	10: dim +"."+ mem +"."+ gFr
 });
 // let p = '14100017', // []
 let requestData = [],

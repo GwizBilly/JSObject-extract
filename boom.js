@@ -36,29 +36,17 @@ for (let ii = 0; ii < IDsLen; ii++) {
 for (let i = 0; i < len; i++) {
 	for (let j = 0; j < IDsLen; j++) {
 		if (all[i][id] == parseInt(IDs[j])) {
-			if (masterCount === 0) {
-				out[masterCount][0] = "cansimId";
-				out[masterCount][1] = id;
-				out[masterCount][2] = en;
-				out[masterCount][3] = fr;
-				out[masterCount][4] = start
-				out[masterCount][5] = end;
-				out[masterCount][6] = arch;
-				out[masterCount][7] = freq;
-				out[masterCount][8] = dimsArray;
-			} else {
-				//console.log("Found it! It is " + all[i][id] + " and number " + j);
-				//console.log(all[i]["cubeTitleEn"]);
-				out[masterCount][0] = all[i]["cansimId"];
-				out[masterCount][1] = all[i][id];
-				out[masterCount][2] = all[i][en];
-				out[masterCount][3] = all[i][fr];
-				out[masterCount][4] = all[i][start];
-				out[masterCount][5] = all[i][end];
-				out[masterCount][6] = all[i][arch];
-				out[masterCount][7] = all[i][freq];
-				out[masterCount][8] = all[i][dimsArray].length;
-			}
+			//console.log("Found it! It is " + all[i][id] + " and number " + j);
+			//console.log(all[i]["cubeTitleEn"]);
+			out[masterCount][0] = all[i]["cansimId"];
+			out[masterCount][1] = all[i][id];
+			out[masterCount][2] = all[i][en];
+			out[masterCount][3] = all[i][fr];
+			out[masterCount][4] = all[i][start];
+			out[masterCount][5] = all[i][end];
+			out[masterCount][6] = all[i][arch];
+			out[masterCount][7] = all[i][freq];
+			out[masterCount][8] = all[i][dimsArray].length;
 			masterCount++
 		}
 	}

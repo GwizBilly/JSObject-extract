@@ -28,9 +28,13 @@ for (let i = 0; i < inLen - 1; i++) {
 		// last for loop to concatenate al geographies into one string
 		let len = input[i + 1]["object"].dimension[0].member.length;
 		for (let k = 0; k < len; k++) {
-			out[i + 1][j] = input[i + 1]["object"].dimension[0].member[k].memberNameEn;
+			if (j < columns - 1) {
+			out[i + 1][j] += input[i + 1]["object"].dimension[0].member[k].memberNameEn + ";";
+			} else {
+			out[i + 1][j] += input[i + 1]["object"].dimension[0].member[k].memberNameFr + ";";
+			}
 		}
 	}
 }
 
-console.log(out[1]);
+console.log(out);
