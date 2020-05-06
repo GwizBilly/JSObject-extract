@@ -10,7 +10,7 @@ const https = require('https'),
         CSV = fs.readFileSync('./GEO.csv'),
      geoCSV = CSV.toString().split("\n"), //this is an array[]
     gLength = geoCSV.length;
-
+// define progress bar
 let pb = {
 	"size": gLength,
 	"cursor": 0,
@@ -29,7 +29,7 @@ let pb = {
 }
 
 console.log("Fetching data for " + gLength + " geographic units");
-
+// start prograss bar
 pb.start(gLength);
 
 let accString = "", // accumulate responses in one long string
