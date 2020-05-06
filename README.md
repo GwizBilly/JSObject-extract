@@ -20,7 +20,8 @@ const myModule = require('./input_files/all.js');
 
 The list of IDs (list.js) contains the CANSIM id, productId, freq, and archivedStatus (but we'll only use the productId).
 
-*The Task*
+## The Task
+
 We would like the titles for each productId, in both official languages, along with other metadata (geo, frequency, datapoints, ...).
 
 This first part is done with "boom.js" and two modules: "./input_files/all.js" and "./input_files/list.js"
