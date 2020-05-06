@@ -1,0 +1,43 @@
+{
+	"productId": 14100017,
+	"cansimId": "282-0001",
+	"cubeTitleEn": "Labour force characteristics by sex and detailed age group, monthly, unadjusted for seasonality",
+	"cubeTitleFr": "Caractéristiques de la population active selon le sexe et le groupe d'âge détaillé, données mensuelles non désaisonnalisées",
+	"cubeStartDate": "1976-01-01",
+	"cubeEndDate": "2020-03-01",
+	"archived": "2",
+	"subjectCode": [
+		"14"
+	],
+	"surveyCode": [
+		"3701"
+	],
+	"frequencyCode": 6,
+	"corrections": [],
+	"dimensions": [
+		{
+			"dimensionNameEn": "Geography",
+			"dimensionNameFr": "Géographie",
+			"dimensionPositionId": 1,
+			"hasUOM": false
+		},
+		{
+			"dimensionNameEn": "Labour force characteristics",
+			"dimensionNameFr": "Caractéristiques de la population active",
+			"dimensionPositionId": 2,
+			"hasUOM": true
+		},
+		{
+			"dimensionNameEn": "Sex",
+			"dimensionNameFr": "Sexe",
+			"dimensionPositionId": 3,
+			"hasUOM": false
+		},
+		{
+			"dimensionNameEn": "Age group",
+			"dimensionNameFr": "Groupe d'âge",
+			"dimensionPositionId": 4,
+			"hasUOM": false
+		}
+	]
+},
