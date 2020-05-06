@@ -34,35 +34,35 @@ Developer resources for GET request: https://www.statcan.gc.ca/eng/developers/wd
 
 ## Restful client that fetches geography
 
-The geo needs to be extracted from a "cubeMetadata" POST request. 
-One request per productId, followed by a cleanup of the data, and outputting to .csv format.
+This second part is done with asyncPost.js and one module: list.js
 
-This second part is done with asyncPost.js and list.js, then we clean up with async(pp).js.
+We need to perform this second part because the geography information needs to be extracted from a "getCubeMetadata" POST request.
 
-Since some of the metadata information is repeated in both resources, we can verify our results 😊
+We make one POST request per productId (asyncPost.js), followed by a cleanup of the data(asyncPost(pp).js), and outputting to .csv format (viewAsync.js).
+
+Since some of the metadata information is repeated in both resources (GET and POST), we should verify our results match 😊
 
 Developer resources for POST request: https://www.statcan.gc.ca/eng/developers/wds/user-guide#a11-1
 
 ## NodeJs environment and StatCan Web Data Service (WDS)
 
 Once you've cloned this repo, you should run ' npm install ' to fetch the project dependencies (see package.json).
-Then run the NodeJs programs in order (see below).
+Then run the NodeJs programs in order (see technical details below for detailed step-by-step).
 
 Here's a link to the main StatCan developer resource: https://www.statcan.gc.ca/eng/developers/wds
 
 ## Technical details
 
-During the first step of extracting from the big JSON object(the results of a curl of "getAllCubesList") I output the results as a 2D-array. I did the same thing with the POST request, converting a JSON object into a 2D-array.
+During the first step of extracting from the big JSON object(the results of a curl of "getAllCubesList") I output the results as a 2D-array. I did the same thing with the POST request; converting a JSON object into a 2D-array.
 
-To convert the 2D-array into CSV format, I wrote a mini program to join each row of the 2d-array and did "console.log(theRow)" for each row.
-The final step is to run this viewer program and redirect the standard output to a file (I'm on a unix system):
+To convert the 2D-array into CSV format, I wrote a mini program to join each row of the 2d-array and did "console.log(theRow)" for each row. To save the output to a file, run the viewer program and redirect the standard output to a file (I'm on a \*nix command line):
 
 *step0*
 ```
 curl https://www150.statcan.gc.ca/t1/wds/rest/getAllCubesList > ./input_files/all.js
 ```
 *step0a* 
-make the file a module for use in next step
+make the file a module for use in next step (see above for details)
 *step1* 
 ```
 node boom.js > output_file/boomOutput.js
@@ -71,7 +71,7 @@ node boom.js > output_file/boomOutput.js
 make the file a module for use in next step
 *step2*
 ```
-node viewBoom.js > final.csv
+node viewBoom.js > finalBoom.csv
  ```
 "boom.js" takes input from "./input_files/list.js" and "./input_files/all.js" (list of IDs and the Big List that I "curled").
 "viewBoom.js" takes input from the output of "boom.js".
@@ -94,3 +94,6 @@ make the file a module for use in next step
 ```
 node viewPPPOST.js > output_file/finalAsync.js
 ```
+"asyncPost.js" takes input from "./input_files/list.js" (list of IDs).
+"asyncPost(pp).js" takes input from the output of "asyncPost.js".
+"viewPPPOST.js" takes input from the output of "asyncPost(pp).js".
