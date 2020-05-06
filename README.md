@@ -1,7 +1,7 @@
 ## JSON subsetting
 
 We want to use a web API to automatically fetch some metadata information about some Labour Force Survey tables. 
-Most of the work can be done after grabbing one big list of metadata from the web. We have a list of product ID #s,
+Most of the work can be done after grabbing one big list of metadata (in JSON format) from the web. We have a list of product ID #s,
 so we'll extract from the big list (all.js) only for the IDs found in the small list (list.js).
 
 To get the big list I used:
