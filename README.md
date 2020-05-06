@@ -26,7 +26,7 @@ We would like the titles for each productId, in both official languages, along w
 
 This first part is done with "boom.js" and two modules: "./input_files/all.js" and "./input_files/list.js"
 
-The we convert to csv using "viewBoom.js":
+We convert to csv using "viewBoom.js", using the output of "boom.js" as a module:
 ```
 node viewBoom.js > ./output_files/finalBoom.csv
 ```
