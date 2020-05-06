@@ -49,7 +49,7 @@ Then run the nodeJs programs in order (see below).
 
 Here's a link to the main statcan developper resource: https://www.statcan.gc.ca/eng/developers/wds
 
-## Techincal details
+## Technical details
 
 During the first step of extracting from the big JSON object(the results of a curl of "getAllCubesList") I output the results as a 2D-array. I did the same thing with the POST request, converting a JSON object into a 2D-array.
 
