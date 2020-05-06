@@ -13,18 +13,22 @@ and I modified the file so I can use "all.js" as a module:
 const myThingy = [{},{},{},...];
 module.exports = myThingy;
 ```
-to include as a module:
+to include as a module in another file:
 ```
 const myModule = require('./input_files/all.js');
 ```
 
-The list of IDs (list.js) also contains the CANSIM id, productId, freq, and archivedStatus (but we'll only use the productId).
+The list of IDs (list.js) contains the CANSIM id, productId, freq, and archivedStatus (but we'll only use the productId).
 
 *The Task*
-We would like the titles for each productId, in both languages, along with a few other metadata (geo, frequency, datapoints).
+We would like the titles for each productId, in both official languages, along with other metadata (geo, frequency, datapoints, ...).
 
-This first part is done with "boom.js" and "./input_files/all.js" and "./input_files/list.js"
+This first part is done with "boom.js" and two modules: "./input_files/all.js" and "./input_files/list.js"
 
+The we convert to csv using "viewBoom.js":
+```
+node viewBoom.js > ./output_files/finalBoom.csv
+```
 Developper resources for GET request: https://www.statcan.gc.ca/eng/developers/wds/user-guide#a11-4
 
 ## Restful client that fetches geography
@@ -53,22 +57,39 @@ To convert the 2D-array into CSV format, I wrote a mini program to join each row
 The final step is to run this viewer program and redirect the standard output to a file (I'm on a unix system):
 
 *step0*
+```
 curl https://www150.statcan.gc.ca/t1/wds/rest/getAllCubesList > ./input_files/all.js
+```
 *step0a* 
 make the file a module for use in next step
 *step1* 
+```
 node boom.js > output_file/boomOutput.js
+```
 *step1a* 
 make the file a module for use in next step
 *step2*
+```
 node viewBoom.js > final.csv
- 
+ ```
 "boom.js" takes input from "./input_files/list.js" and "./input_files/all.js" (list of IDs and the Big List that I "curled").
 "viewBoom.js" takes input from the output of "boom.js".
 
+Getting the geography goes as follows:
+
 *step0*
+```
 node asyncPost.js > output_files/asyncOutput.js
+```
 *step0a* 
 make the file a module for use in next step
-*step1* 
+*step1*
+```
 node asyncPost\(pp\).js > output_file/ppPost.js
+```
+*step1a* 
+make the file a module for use in next step
+*step2*
+```
+node viewPPPOST.js > output_file/finalAsync.js
+```
