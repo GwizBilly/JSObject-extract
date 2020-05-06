@@ -29,25 +29,25 @@ The we convert to csv using "viewBoom.js":
 ```
 node viewBoom.js > ./output_files/finalBoom.csv
 ```
-Developper resources for GET request: https://www.statcan.gc.ca/eng/developers/wds/user-guide#a11-4
+Developer resources for GET request: https://www.statcan.gc.ca/eng/developers/wds/user-guide#a11-4
 
 ## Restful client that fetches geography
 
 The geo needs to be extracted from a "cubeMetadata" POST request. 
-One request per productId, followed by a cleanup of the data, and outputing to .csv format.
+One request per productId, followed by a cleanup of the data, and outputting to .csv format.
 
 This second part is done with asyncPost.js and list.js, then we clean up with async(pp).js.
 
 Since some of the metadata information is repeated in both resources, we can verify our results 😊
 
-Developper resources for POST request: https://www.statcan.gc.ca/eng/developers/wds/user-guide#a11-1
+Developer resources for POST request: https://www.statcan.gc.ca/eng/developers/wds/user-guide#a11-1
 
-## NodeJs environment and Statcan Web Data Service
+## NodeJs environment and StatCan Web Data Service (WDS)
 
 Once you've cloned this repo, you should run ' npm install ' to fetch the project dependencies (see package.json).
-Then run the nodeJs programs in order (see below).
+Then run the NodeJs programs in order (see below).
 
-Here's a link to the main statcan developper resource: https://www.statcan.gc.ca/eng/developers/wds
+Here's a link to the main StatCan developer resource: https://www.statcan.gc.ca/eng/developers/wds
 
 ## Technical details
 
