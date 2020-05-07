@@ -76,6 +76,7 @@ node boom.js > output_file/boomOutput.js
 ```
 *step1a* 
 make the file a module for use in next step
+
 *step2*
 ```
 node viewBoom.js > finalBoom.csv
@@ -97,6 +98,7 @@ node asyncPost\(pp\).js > output_file/ppPost.js
 ```
 *step1a* 
 make the file a module for use in next step
+
 *step2*
 ```
 node viewPPPOST.js > output_file/finalAsync.js
