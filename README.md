@@ -63,21 +63,21 @@ During the first step of extracting from the big JSON object(the results of a cu
 
 To convert the 2D-array into CSV format, I wrote a mini program to join each row of the 2d-array and did "console.log(theRow)" for each row. To save the output to a file, run the viewer program and redirect the standard output to a file (I'm on a \*nix command line):
 
-###*step0*
+### *step0*
 ```
 curl https://www150.statcan.gc.ca/t1/wds/rest/getAllCubesList > ./input_files/all.js
 ```
-###*step0a* 
+### *step0a* 
 make the file a module for use in next step (see above for details)
 
-###*step1* 
+### *step1* 
 ```
 node boom.js > output_file/boomOutput.js
 ```
-###*step1a* 
+### *step1a* 
 make the file a module for use in next step
 
-###*step2*
+### *step2*
 ```
 node viewBoom.js > finalBoom.csv
  ```
@@ -86,20 +86,20 @@ node viewBoom.js > finalBoom.csv
 
 Getting the geography goes as follows:
 
-###*step0*
+### *step0*
 ```
 node asyncPost.js > output_files/asyncOutput.js
 ```
-###*step0a* 
+### *step0a* 
 make the file a module for use in next step
-###*step1*
+### *step1*
 ```
 node asyncPost\(pp\).js > output_file/ppPost.js
 ```
-###*step1a* 
+### *step1a* 
 make the file a module for use in next step
 
-###*step2*
+### *step2*
 ```
 node viewPPPOST.js > output_file/finalAsync.js
 ```
