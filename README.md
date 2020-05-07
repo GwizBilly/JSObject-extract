@@ -1,55 +1,61 @@
+## NodeJs environment and StatCan Web Data Service (WDS)
+
+Once you've cloned this repo, you should run ' npm install ' to fetch the project dependencies (see package.json).
+Then run the NodeJs programs in order (see technical details below for detailed step-by-step). If you don't have NodeJs, and/or you don't have a Linux or Unix type of command line interface, these instructions won't work.
+
+You can get this working on the following platform:
+
+1. Android smartphone or tablet (Termux + nodejs).
+2. Windows 10 with Windows Subsystem for Linux + nodejs
+3. anything \*nix (Such as a 10$ Raspberry Pi Zero)
+
+Here's a link to the main StatCan developer resource: https://www.statcan.gc.ca/eng/developers/wds
+
+## The Task at hand
+
+We would like the titles for each productId, in both official languages, along with other metadata (geo, frequency, datapoints, ...). We want to use a web API to automatically fetch the metadata information about some Labour Force Survey tables (list.js). 
+
 ## JSON subsetting
 
-We want to use a web API to automatically fetch some metadata information about some Labour Force Survey tables. 
-Most of the work can be done after grabbing one big list of metadata (in JSON format) from the web. We have a list of product ID #s,
-so we'll extract from the big list (all.js) only for the IDs found in the small list (list.js).
+Most of the work can be done after grabbing one big list (all.js) of metadata (in JSON format) from the web. We have a list of product ID #s, so we'll do an extraction on the big list we get from the web (all.js), for the IDs found in the small list (list.js) we started with.
 
-To get the big list I used:
+To get the big list I used curl (but you can also just plug the URL into a browser):
 ```
 curl https://www150.statcan.gc.ca/t1/wds/rest/getAllCubesList > ./input_files/all.js
 ```
-and I modified the file so I can use "all.js" as a module:
+Notice that I redirect the output from curl to a file called "all.js", and I modified it so I can use "all.js" as a module:
 ```
 const myThingy = [{},{},{},...];
 module.exports = myThingy;
 ```
-to include as a module in another file:
+to include "all.js" as a module in another file (boom.js):
 ```
 const myModule = require('./input_files/all.js');
 ```
 
 The list of IDs (list.js) contains the CANSIM id, productId, freq, and archivedStatus (but we'll only use the productId).
 
-## The Task
+This first part (JSON subsetting) is done with "boom.js" and two modules: "./input_files/all.js" and "./input_files/list.js"
 
-We would like the titles for each productId, in both official languages, along with other metadata (geo, frequency, datapoints, ...).
-
-This first part is done with "boom.js" and two modules: "./input_files/all.js" and "./input_files/list.js"
-
-We convert to csv using "viewBoom.js", using the output of "boom.js" as a module:
+We then convert to csv by running "viewBoom.js", using the output of "boom.js" as a module:
 ```
 node viewBoom.js > ./output_files/finalBoom.csv
 ```
+Notice that I redirect the output from "viewBoom.js" to a file called "finalBoom.csv".
+
 Developer resources for GET request: https://www.statcan.gc.ca/eng/developers/wds/user-guide#a11-4
 
-## Restful client that fetches geography
+## Restful client that fetches geography (POST request)
 
-This second part is done with asyncPost.js and one module: list.js
+This second part is done with "asyncPost.js" and one module: "list.js".
 
-We need to perform this second part because the geography information needs to be extracted from a "getCubeMetadata" POST request.
+We need to perform this second part (asynchronous web requests) because the geography information needs to be extracted from a "getCubeMetadata" POST request.
 
-We make one POST request per productId (asyncPost.js), followed by a cleanup of the data(asyncPost(pp).js), and outputting to .csv format (viewAsync.js).
+We make one POST request per productId (asyncPost.js), followed by a cleanup of the data(asyncPost(pp).js), and outputting to .csv format (viewAsync.js). This is more complicated because there isn't one big list with the informatiopn we want. We have to make our own list by making multiple requests, followed by subsetting like in our first step shown above.
 
-Since some of the metadata information is repeated in both resources (GET and POST), we should verify our results match 😊
+Since some of the metadata information is repeated in both resources (GET and POST), we should verify that our results match 😊
 
 Developer resources for POST request: https://www.statcan.gc.ca/eng/developers/wds/user-guide#a11-1
-
-## NodeJs environment and StatCan Web Data Service (WDS)
-
-Once you've cloned this repo, you should run ' npm install ' to fetch the project dependencies (see package.json).
-Then run the NodeJs programs in order (see technical details below for detailed step-by-step).
-
-Here's a link to the main StatCan developer resource: https://www.statcan.gc.ca/eng/developers/wds
 
 ## Technical details
 
