@@ -69,6 +69,7 @@ curl https://www150.statcan.gc.ca/t1/wds/rest/getAllCubesList > ./input_files/al
 ```
 *step0a* 
 make the file a module for use in next step (see above for details)
+
 *step1* 
 ```
 node boom.js > output_file/boomOutput.js
