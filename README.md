@@ -18,7 +18,7 @@ We would like the titles for each productId, in both official languages, along w
 
 ## JSON subsetting
 
-Most of the work can be done after grabbing one big list (all.js) of metadata (in JSON format) from the web. We have a list of product ID #s, so we'll do an extraction on the big list we get from the web (all.js), for the IDs found in the small list (list.js) we started with.
+Most of the work can be done after grabbing one big list (all.js) of metadata (in JSON format) from the web. We have a list of product ID #s, so we can do an extraction on the big list, after we do a GET request to obtain information on all products.
 
 To get the big list I used curl (but you can also just plug the URL into a browser):
 ```
