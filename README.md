@@ -8,6 +8,7 @@ You can get this working on the following platform:
 1. Android smartphone or tablet (Termux + nodejs).
 2. Windows 10 with Windows Subsystem for Linux + nodejs
 3. anything \*nix (Such as a 10$ Raspberry Pi Zero)
+4. a mac product probably works fine too (I haven't tested it).
 
 Here's a link to the main StatCan developer resource: https://www.statcan.gc.ca/eng/developers/wds
 
