@@ -52,7 +52,7 @@ This second part is done with "asyncPost.js" and one module: "list.js".
 
 We need to perform this second part (asynchronous web requests) because the geography information needs to be extracted from a "getCubeMetadata" POST request.
 
-We make one POST request per productId (asyncPost.js), followed by a cleanup of the data(asyncPost(pp).js), and outputting to .csv format (viewAsync.js). This is more complicated because there isn't one big list with the informatiopn we want. We have to make our own list by making multiple requests, followed by subsetting like in our first step shown above.
+We make one POST request per productId (asyncPost.js), followed by a cleanup of the data(asyncPost(pp).js), and outputting to .csv format (viewAsync.js). This is more complicated because there isn't one big list with the information we want. We have to make our own list by making multiple requests, followed by subsetting like in our first step shown above.
 
 Since some of the metadata information is repeated in both resources (GET and POST), we should verify that our results match 😊
 
@@ -62,7 +62,7 @@ Developer resources for POST request: https://www.statcan.gc.ca/eng/developers/w
 
 During the first step of extracting from the big JSON object(the results of a curl of "getAllCubesList") I output the results as a 2D-array. I did the same thing with the POST request; converting a JSON object into a 2D-array.
 
-To convert the 2D-array into CSV format, I wrote a mini program to join each row of the 2d-array and did "console.log(theRow)" for each row. To save the output to a file, run the viewer program and redirect the standard output to a file (I'm on a \*nix command line):
+To convert the 2D-array into CSV format, I wrote a mini "viewer" program to .join(",") each row of the 2d-array and did "console.log(theRow)" for each row. To save the output to a file, run the viewer program and redirect the standard output to a file:
 
 ### *step0*
 ```
