@@ -24,7 +24,7 @@ To get the big list I used curl (but you can also just plug the URL into a brows
 ```
 curl https://www150.statcan.gc.ca/t1/wds/rest/getAllCubesList > ./input_files/all.js
 ```
-Notice that I redirect the output from curl to a file called "all.js", and I modified it so I can use "all.js" as a module:
+Notice that I redirect the output from curl to a file called "all.js", and I modified this file so I can use it as a module:
 ```
 const myThingy = [{},{},{},...];
 module.exports = myThingy;
