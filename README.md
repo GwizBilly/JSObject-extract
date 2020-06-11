@@ -95,14 +95,14 @@ node asyncPost.js > output_files/asyncOutput.js
 make the file a module for use in next step
 ### *step1*
 ```
-node asyncPost\(pp\).js > output_file/ppPost.js
+node asyncPost\(pp\).js > output_files/ppPost.js
 ```
 ### *step1a* 
 make the file a module for use in next step
 
 ### *step2*
 ```
-node viewPPPOST.js > output_file/finalAsync.js
+node viewPPPOST.js > output_files/finalAsync.js
 ```
 "asyncPost.js" takes input from "./input_files/list.js" (list of IDs).
 "asyncPost(pp).js" takes input from the output of "asyncPost.js".
